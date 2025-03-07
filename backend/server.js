@@ -1,12 +1,27 @@
 const express = require('express');
 const cors = require('cors');
 
-const userRoutes = require('./routes/userRoutes');
+const userRouter = express.Router();
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:3000',
-}));
 
-app.use('/api/users',userRoutes);
+app.use('/api/users',userRouter);
+
+userRouter.post('/sayHello', function(req,res) {
+    const responseBody = {
+        version: "2.0",
+        template: {
+          outputs: [
+            {
+              simpleText: {
+                text: "hello I'm Ryan"
+              }
+            }
+          ]
+        }
+      };
+    
+      res.status(200).send(responseBody);
+});
+app.listen(3001);
