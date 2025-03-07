@@ -30,7 +30,7 @@ userRouter.post('/sayHello', (req, res) => {
 
 app.use('/api/users', userRouter);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`서버가 http://localhost:${PORT} 에서 실행 중...`);
 });
